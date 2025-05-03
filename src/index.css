@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.vertical-line {
+    border: 0;
+    border-left: 3px solid #000; /* سمك ولون الخط */
+    height: 200px; /* الطول */
+    margin: 0 auto; /* لمركزة الخط */
+  }

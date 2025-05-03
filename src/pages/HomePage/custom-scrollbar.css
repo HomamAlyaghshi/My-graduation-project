@@ -1,0 +1,26 @@
+#custom-slider {
+  overflow-x: auto; /* تفعيل التمرير الأفقي */
+}
+
+/* شريط التمرير لمتصفحات WebKit مثل Chrome وSafari */
+#custom-slider::-webkit-scrollbar {
+  width: 12px; /* عرض شريط التمرير */
+  height: 12px; /* ارتفاع شريط التمرير */
+}
+
+#custom-slider::-webkit-scrollbar-thumb {
+  background-color: #343839; /* لون الشريط */
+  border-radius: 80px; /* نصف القطر */
+}
+
+#custom-slider::-webkit-scrollbar-track {
+  background-color: #E8ECEF; /* خلفية الشريط */
+}
+
+/* شريط التمرير لـ Firefox */
+#custom-slider {
+  scrollbar-width: thin; /* أو auto */
+  scrollbar-color: #343839 #E8ECEF; /* اللون الخاص بالشريط والخلفية */
+}
+
+
