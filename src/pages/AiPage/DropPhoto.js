@@ -55,7 +55,7 @@ const DropPhoto = () => {
           style={{ maxWidth: "100%", maxHeight: "300px" }}
         />
       ) : (
-        <>
+        <div className="font-Rajdhani font-bold">
           <p>Drop your photo here</p>
           <p>Or</p>
           <button
@@ -79,7 +79,7 @@ const DropPhoto = () => {
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
-        </>
+        </div>
       )}
     </div>
   );

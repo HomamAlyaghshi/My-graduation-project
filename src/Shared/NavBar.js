@@ -32,8 +32,8 @@ const NavBar = () => {
         </button>
       </div>
       <Link to={"/homepage"}>
-        <button className="font-poppins text-[24px] leading-[24px] text-center w-[105px] h-[24px] text-white hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold ">
-          Furnishify.
+        <button className="font-Orbitron text-[30px] leading-[24px] text-center w-[105px] h-[24px] text-white hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold ">
+          SpaceX.
         </button>
       </Link>
       {isMenuOpen && (
@@ -43,18 +43,18 @@ const NavBar = () => {
         >
           <div className="flex flex-col items-center  py-2">
             <Link to="/homepage">
-              <button className="py-2 text-neon_50 font-medium hover:text-neon">
+              <button className="py-2 text-neon_50 font-medium hover:text-neon font-Rajdhani">
                 Home
               </button>
             </Link>
             <Link to="/ai">
-              <button className="py-2 text-white font-medium hover:text-neon">
+              <button className="py-2 text-white font-medium hover:text-neon font-Rajdhani">
                 AI Service
               </button>
             </Link>
 
             <Link to="/contactuspage">
-              <button className="py-2 text-white font-medium hover:text-neon">
+              <button className="py-2 text-white font-medium hover:text-neon font-Rajdhani">
                 Contact Us
               </button>
             </Link>
@@ -68,18 +68,18 @@ const NavBar = () => {
       )}
       <div className="hidden md:flex  h-[24px] gap-[40px] ">
         <Link to="/homepage">
-          <button className="grid gap-[2px] text-white font-medium hover:text-neon transform transition-all hover:scale-90 ">
+          <button className="  text-white font-medium font-Rajdhani hover:text-neon transform transition-all hover:scale-90 ">
             Home
           </button>
         </Link>
         <Link to="/ai">
-          <button className=" text-white font-medium hover:text-neon">
+          <button className=" text-white font-medium font-Rajdhani hover:text-neon transform transition-all hover:scale-90">
             AI Service
           </button>
         </Link>
 
         <Link to={"/contactuspage"}>
-          <button className="w-[76px] grid gap-[2px] text-white font-medium whitespace-nowrap hover:text-neon transform transition-all hover:scale-90">
+          <button className=" font-Rajdhani  text-white font-medium whitespace-nowrap hover:text-neon transform transition-all hover:scale-90">
             Contact Us
           </button>
         </Link>

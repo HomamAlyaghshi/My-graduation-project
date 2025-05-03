@@ -4,6 +4,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Orbitron: ["Orbitron", "sans-serif"],
+        Rajdhani: ["Rajdhani", "sans-serif"],
+      },
       colors: {
         blue: "#377DFF",
         // === Space Theme Colors ===
@@ -17,6 +21,8 @@ module.exports = {
       backgroundImage: {
         "space-gradient": "linear-gradient(135deg, #0B0F26, #4F46E5, #00FFC6)",
         "space-text": "linear-gradient(90deg, #FF6A00, #FF9E00, #FFD700)",
+        "space-grid":
+          "linear-gradient(90deg, #ffffff 0%, #1e3a8a 50%, #ffffff 100%)",
       },
     },
   },

@@ -97,7 +97,7 @@ const Slider = () => {
       </div>
 
       {/* النص أسفل الفيديو */}
-      <div className="w-full flex flex-col md:flex-row justify-center items-center mt-[16px] sm:mb-[72px] mb-[32px] px-4 text-white text-center md:text-left">
+      <div className="w-full flex flex-col md:flex-row justify-center items-center mt-[16px] sm:my-[72px] mb-[32px] px-4 text-white text-center md:text-left">
         <div className="flex-1 max-w-[643px] font-poppins text-[28px] md:text-[58px] font-medium leading-[38px] md:leading-[76px] tracking-[-2px]">
           Exploring the Cosmos/
           <br /> Unlocking the Universe.
