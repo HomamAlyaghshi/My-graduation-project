@@ -21,7 +21,7 @@ const Counter = ({ target }) => {
   }, [target]);
 
   return (
-    <p className="font-poppins text-[28px] font-bold leading-[24px] mt-5">
+    <p className="font-poppins text-[28px] font-bold leading-[24px] mt-5  ">
       {Math.floor(count)} {/* استخدام Math.floor لتقريب الرقم */}
     </p>
   );
