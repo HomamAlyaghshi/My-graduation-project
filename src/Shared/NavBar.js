@@ -73,7 +73,7 @@ const NavBar = () => {
           </button>
         </Link>
         <Link to="/ai">
-          <button className=" text-white font-medium font-Rajdhani hover:text-neon transform transition-all hover:scale-90">
+          <button className=" text-star font-bold font-Rajdhani hover:text-neon transform transition-all hover:scale-90">
             AI Service
           </button>
         </Link>
