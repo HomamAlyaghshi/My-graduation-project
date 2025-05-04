@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="flex flex-col items-center sm:flex-row sm:w-[544px] justify-between">
           <Link to={"/homepage"}>
             <button className="w-[105px] font-Orbitron  text-[24px]  leading-[24px] text-center text-white hover:text-blue transition-all duration-200 hover:scale-95 transform">
-              Homam Alyaghshi.
+              SpaceX.
             </button>
           </Link>
           <div className="w-[1px] h-[24px] bg-gray-500 hidden sm:block"></div>
