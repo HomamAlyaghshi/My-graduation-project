@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon">
+    <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon  ">
       <Link to="/ai" className="w-full h-full">
         <div className=" w-full h-full flex justify-center items-center">
           <video
-            className="w-full md:w-5/6 flex justify-center items-center  h-full rounded-2xl shadow-xl shadow-neon hover:scale-95 transition-all duration-500"
+            className="w-full md:w-5/6 flex justify-center items-center  h-full rounded-2xl  hover:scale-95 transition-all duration-500 "
             src="/videos/drop.mp4"
             autoPlay
             loop

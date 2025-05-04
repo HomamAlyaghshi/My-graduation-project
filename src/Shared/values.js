@@ -47,11 +47,11 @@ const Values = () => {
   ]);
 
   return (
-    <div className="w-full max-w-[1440px] py-[72px] flex justify-between items-center gap-[24px] px-8">
+    <div className="w-full max-w-[1440px] py-[72px] flex justify-between items-center gap-[24px] px-8 ">
       {valueItems.map((item, index) => (
         <div
           key={index}
-          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white bg-spaceMid rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-all duration-500"
+          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white  rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-all duration-500"
         >
           <img
             alt={item.title}

@@ -5,7 +5,7 @@ import DropPhoto from "./DropPhoto";
 import HeroSection from "./HeroSection";
 const AiPage = () => {
   return (
-    <div className="w-full h-full bg-spaceDark">
+    <div className="w-full h-full bg-gradient-to-b from-[#00000F] via-[#0a1d3a] to-[#3a5f91]  ">
       <NavBar />
       <div className="grid grid-cols-2 mt-4">
         <HeroSection />

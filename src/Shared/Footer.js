@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-spaceDark h-[665px] md:h-full sm:h-[360px] py-[32px] md:px-[16px] sm:px-[160px] grid gap-[18px] font-bold font-Rajdhani">
+    <div className="bg-gradient-to-b from-[#3a5f91] via-[#0a1d3a] to-[#000000]   h-[665px] md:h-full sm:h-[360px] py-[32px] md:px-[16px] sm:px-[160px] grid gap-[18px] font-bold font-Rajdhani">
       <div className="flex flex-col items-center sm:flex-row sm:justify-between">
         <div className="flex flex-col items-center sm:flex-row sm:w-[544px] justify-between">
           <Link to={"/homepage"}>
