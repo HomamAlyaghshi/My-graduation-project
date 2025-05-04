@@ -1,67 +1,56 @@
 import React from "react";
-import { EyeIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaTwitter, FaGoogle } from "react-icons/fa";
 
 const SignInForm = () => {
   return (
-    <form className="p-4 bg-spaceMid rounded-lg">
-      <h1 className="font-poppins text-[32px] font-medium mb-4 text-left text-lightText ">
-        Sign In
-      </h1>
-      <div className="flex items-center mb-4">
-        <p className="font-inter text-base text-lightText text-[12px]">
-          Don’t have an account yet?
-        </p>
-        <Link to="/signup">
-          <button className="font-inter transition-all delay-100 hover:scale-110 text-star text-base font-semibold text-[12px] ml-1">
-            Sign Up
-          </button>
-        </Link>
+    <form className="p-6  rounded-xl  text-white font-Rajdhani font-bold">
+      {/* مقدمة الترحيب */}
+      <p className="text-sm  mb-1 opacity-60">Login to your account</p>
+      <h1 className="text-4xl   mb-1">Welcome Back !</h1>
+      <p className="text-sm  mb-6 opacity-60">Enter your email and password</p>
+
+      {/* حقل الإيميل */}
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-sm   mb-1">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neon hover:shadow-xl shadow-lg shadow-neon hover:shadow-neon"
+          placeholder="example@email.com"
+        />
       </div>
 
-      <div className="mb-4 text-lightText rounded-lg">
-        <label className="block text-[13px] mb-1 ">
-          Your username or email address
+      {/* حقل كلمة المرور */}
+      <div className="mb-2">
+        <label htmlFor="password" className="block text-sm mb-1">
+          Password
         </label>
-        <input className="mb-4 w-full border-b border-hr text-black p-1 text-[12px]" />
-        <div className="mb-4 rounded-lg">
-          <div className="flex items-center justify-between">
-            <label className="mr-2 text-[13px] mb-1">Password</label>
-            <EyeIcon className="w-5 h-5 text-lightText cursor-pointer" />
-          </div>
-          <input
-            className="w-full border-b border-hr p-1 text-black text-[13px]"
-            type="password"
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="checkbox"
-              className="w-[24px] h-[24px] mr-[12px] text-black"
-            />
-            <p className="font-inter text-base text-[12px]">Remember me</p>
-          </div>
-          <button className="text-subText font-bold text-[12px]">
-            Forget password?
-          </button>
-        </div>
+        <input
+          type="password"
+          id="password"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neon hover:shadow-xl shadow-lg shadow-neon hover:shadow-neon"
+          placeholder="••••••••"
+        />
       </div>
+
+      {/* رابط نسيان كلمة المرور */}
+      <div className="text-right mb-6">
+        <button className="text-sm text-blue-600 hover:underline font-medium hover:text-star">
+          Forgot password?
+        </button>
+      </div>
+
+      {/* زر تسجيل الدخول */}
       <Link to="/homepage">
-        <button className="w-full h-[48px] my-2 text-white bg-neon rounded-lg hover:scale-95 transition-all duration-200 delay-200 hover:text-star flex items-center justify-center">
+        <button
+          type="submit"
+          className="w-full bg-neon py-2 px-4 rounded-2xl hover:text-star hover:scale-95 duration-500 delay-100 hover:shadow hover:shadow-black  transition-all"
+        >
           Sign In
         </button>
       </Link>
-      <hr className="my-2 mt-6"></hr>
-      <span className="text-white">Or sign in with :</span>
-      <div className="my-1 text-black  flex justify-center gap-6 text-2xl">
-        <FaFacebookF className="cursor-pointer hover:text-sky-900 transition" />
-        <FaInstagram className="cursor-pointer hover:text-pink-500 transition" />
-        <FaTwitter className="cursor-pointer hover:text-sky-500 transition" />
-        <FaGoogle className="cursor-pointer hover:text-red-500 transition" />
-      </div>
     </form>
   );
 };
