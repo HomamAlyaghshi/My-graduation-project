@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon  ">
+    <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon   ">
       <Link to="/ai" className="w-full h-full">
         <div className=" w-full h-full flex justify-center items-center">
           <video

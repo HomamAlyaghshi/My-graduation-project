@@ -24,7 +24,7 @@ const BlogSection = () => {
 
   return (
     <div className=" h-auto py-[24px] md:py-[48px] grid gap-[24px] justify-center items-center font-Rajdhani text-white">
-      <div className="  h-auto md:h-[88px] flex flex-col md:flex-row justify-between items-center px-4 md:px-0">
+      <div className="  h-auto md:h-[88px] flex flex-col md:flex-row justify-between items-center px-4 md:px-0 mx-8">
         <div className=" text-[28px] md:text-[40px] font-medium leading-[32px] md:leading-[44px] tracking-[-0.4px] text-left">
           Articles
         </div>
@@ -48,7 +48,7 @@ const BlogSection = () => {
               src={post.image}
               className="w-full h-[250px]  md:h-[325px] object-cover rounded-3xl shadow-2xl shadow-neon hover:shadow-white transition-all duration-500 delay-150"
             />
-            <p className="font-poppins text-[18px] md:text-[20px] font-medium leading-[24px] md:leading-[28px] text-left">
+            <p className=" text-[18px] md:text-[20px] font-medium leading-[24px] md:leading-[28px] text-left">
               {post.title}
             </p>
             <div className="flex  w-full  items-center">

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { FcUpload, FcStackOfPhotos, FcApproval } from "react-icons/fc"; // استيراد الأيقونات المناسبة
 
-const Counter = ({ target }) => {
+const Counter = ({ target, startCounting }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!startCounting) return; // لا تبدأ العد إذا لم تكن قد وصلت إلى العنصر
+
     const duration = 4000; // مدة العداد (4 ثواني)
     const step = target / (duration / 10); // حساب الزيادة في كل مرة (كل 10 ميللي ثانية)
 
@@ -18,10 +21,10 @@ const Counter = ({ target }) => {
     }, 10); // كل 10 ميللي ثانية
 
     return () => clearInterval(interval); // تنظيف المؤقت عند إلغاء المكون
-  }, [target]);
+  }, [target, startCounting]);
 
   return (
-    <p className="font-poppins text-[28px] font-bold leading-[24px] mt-5  ">
+    <p className="font-poppins text-[28px] font-bold leading-[24px] mt-5">
       {Math.floor(count)} {/* استخدام Math.floor لتقريب الرقم */}
     </p>
   );
@@ -30,39 +33,66 @@ const Counter = ({ target }) => {
 const Values = () => {
   const [valueItems] = useState([
     {
-      image: "/images/v1.svg",
+      icon: <FcUpload className="text-5xl mb-[16px]" />,
       title: "Number of articles",
       number: 251,
     },
     {
-      image: "/images/v2.png",
-      title: "Number of users",
+      icon: <FcStackOfPhotos className="text-5xl mb-[16px]" />,
+      title: "Number of image proccessing",
       number: 2548,
     },
     {
-      image: "/images/v3.svg",
+      icon: <FcApproval className="text-5xl mb-[16px]" />,
       title: "Number of subscribers",
       number: 192,
     },
   ]);
 
+  const [startCounting, setStartCounting] = useState(false);
+  const valuesRef = useRef(null);
+
+  // استخدام Intersection Observer لمتابعة العنصر
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartCounting(true); // يبدأ العد عند ظهور العنصر
+          observer.disconnect(); // إيقاف المراقبة بعد أن ظهر العنصر
+        }
+      },
+      { threshold: 0.5 } // يبدأ العد عندما يظهر 50% من العنصر
+    );
+
+    if (valuesRef.current) {
+      observer.observe(valuesRef.current);
+    }
+
+    return () => {
+      if (valuesRef.current) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   return (
-    <div className="w-full max-w-[1440px] py-[72px] flex justify-between items-center gap-[24px] px-8 ">
+    <div
+      ref={valuesRef}
+      className="w-full max-w-[1440px] py-[108px] flex justify-between items-center gap-[24px] px-8 "
+    >
       {valueItems.map((item, index) => (
         <div
           key={index}
-          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white  rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-all duration-500"
+          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-all duration-500 border border-neon"
         >
-          <img
-            alt={item.title}
-            src={item.image}
-            className="w-[40px] h-[36px] mb-[16px]"
-          />
+          <div className="w-full flex justify-center items-center">
+            {item.icon} {/* عرض الأيقونة */}
+          </div>
           <div className="w-full">
             <p className="font-poppins text-[20px] font-medium leading-[28px]">
               {item.title}
             </p>
-            <Counter target={item.number} />
+            <Counter target={item.number} startCounting={startCounting} />
           </div>
         </div>
       ))}

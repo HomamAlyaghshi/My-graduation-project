@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { Link, useLocation } from "react-router-dom";
+import { FcGraduationCap, FcGlobe } from "react-icons/fc"; // استيراد الأيقونات الجديدة
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null); // إنشاء مرجع للقائمة
+  const location = useLocation(); // استخدم useLocation لمعرفة المسار الحالي
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,16 +26,22 @@ const NavBar = () => {
     };
   }, []);
 
+  const getLinkClass = (path) => {
+    return location.pathname === path
+      ? "text-yellow-400 font-bold" // إذا كان المسار الحالي هو نفس الرابط، اجعل اللون أصفر
+      : "text-white font-medium hover:text-neon transform transition-all hover:scale-90";
+  };
+
   return (
-    <div className="h-[60px] w-full  md:py-[16px] flex justify-between px-4 items-center text-white shadow-sm ">
-      <div className="md:hidden flex items-center ">
+    <div className="w-full md:py-[16px] flex justify-between px-4 items-center text-white shadow-sm font-Rajdhani">
+      <div className="md:hidden flex items-center">
         <button onClick={toggleMenu}>
           <Bars3Icon className="w-6 h-6 text-neon" />
         </button>
       </div>
       <Link to={"/homepage"}>
-        <button className="font-Orbitron text-[30px] leading-[24px] text-center w-[105px] h-[24px] text-white hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold ">
-          SpaceX.
+        <button className="font-Orbitron text-[30px] leading-[24px] text-center hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold">
+          <FcGraduationCap className="inline-block w-9 h-9 " /> SpaceX.
         </button>
       </Link>
       {isMenuOpen && (
@@ -41,54 +49,47 @@ const NavBar = () => {
           ref={menuRef}
           className="absolute top-[60px] left-0 w-full bg-white shadow-md z-10"
         >
-          <div className="flex flex-col items-center  py-2">
+          <div className="flex flex-col items-center py-2">
             <Link to="/homepage">
-              <button className="py-2 text-neon_50 font-medium hover:text-neon font-Rajdhani">
-                Home
-              </button>
+              <button className={getLinkClass("/homepage")}>Home</button>
             </Link>
             <Link to="/ai">
-              <button className="py-2 text-white font-medium hover:text-neon font-Rajdhani">
-                AI Service
+              <button className={getLinkClass("/ai")}>
+                <FcGlobe className="inline-block w-6 h-6 " /> AI Service
               </button>
             </Link>
-
             <Link to="/contactuspage">
-              <button className="py-2 text-white font-medium hover:text-neon font-Rajdhani">
+              <button className={getLinkClass("/contactuspage")}>
                 Contact Us
               </button>
             </Link>
-            <Link to="/accountpage">
-              <button className="py-2 text-white font-medium hover:text-neon">
-                My Profile
-              </button>
+            <Link to="/profile">
+              <button className={getLinkClass("/profile")}>My Profile</button>
             </Link>
           </div>
         </div>
       )}
-      <div className="hidden md:flex  h-[24px] gap-[40px] ">
+      <div className="hidden md:flex gap-[30px]">
         <Link to="/homepage">
-          <button className="  text-white font-medium font-Rajdhani hover:text-neon transform transition-all hover:scale-90 ">
-            Home
-          </button>
+          <button className={getLinkClass("/homepage")}>Home</button>
         </Link>
+        <hr className=" bg-white w-[1px] border-none h-5 opacity-10" />
+
         <Link to="/ai">
-          <button className=" text-star font-bold font-Rajdhani hover:text-neon transform transition-all hover:scale-90">
-            AI Service
+          <button className={getLinkClass("/ai")}>
+            <FcGlobe className="inline-block w-6 h-6" /> AI Service
           </button>
         </Link>
+        <hr className=" bg-white w-[1px] border-none h-5 opacity-10" />
 
         <Link to={"/contactuspage"}>
-          <button className=" font-Rajdhani  text-white font-medium whitespace-nowrap hover:text-neon transform transition-all hover:scale-90">
-            Contact Us
-          </button>
+          <button className={getLinkClass("/contactuspage")}>Contact Us</button>
         </Link>
       </div>
-
-      <div className="hidden md:flex w-[130px] h-[28px]  gap-[16px]">
-        <Link to={"/accountpage"}>
+      <div className="hidden md:flex">
+        <Link to={"/profile"}>
           <button>
-            <UserCircleIcon className="w-6 h-6 text-white hover:text-blue" />
+            <UserCircleIcon className="w-8 h-8 text-white hover:text-blue" />
           </button>
         </Link>
       </div>

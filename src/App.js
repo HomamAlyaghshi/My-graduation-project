@@ -7,6 +7,7 @@ const HomePage = lazy(() => import("./pages/HomePage/index"));
 const AiPage = lazy(() => import("./pages/AiPage/index"));
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage/index"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage/index"));
+const Profile = lazy(() => import("./pages/profile/index"));
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/ai" element={<AiPage />} />
           <Route path="/contactuspage" element={<ContactUsPage />} />
           <Route path="/aboutuspage" element={<AboutUsPage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Suspense>
     </Router>

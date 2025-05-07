@@ -35,7 +35,7 @@ const Slider = () => {
   });
 
   return (
-    <div className="Slider overflow-hidden w-full  h-full">
+    <div className="Slider overflow-hidden w-full  h-full font-Rajdhani">
       {/* Slider Wrapper */}
       <div className="relative max-w-[90%] md:max-w-[70%] mx-auto h-[536px] overflow-hidden shadow-neon shadow-xl ">
         {/* Slides */}

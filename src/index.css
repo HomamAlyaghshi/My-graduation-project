@@ -8,3 +8,9 @@
     height: 200px; /* الطول */
     margin: 0 auto; /* لمركزة الخط */
   }
+
+  @layer base {
+    body {
+      @apply font-Rajdhani font-bold;
+    }
+  }
