@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faInstagram,
   faFacebook,
-  faYoutube,
+  faInstagram,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
@@ -57,48 +56,31 @@ const Footer = () => {
               Terms of Use
             </div>
           </div>
-          <div className=" text-[12px]  leading-[20px] text-center sm:text-left mt-2 sm:mt-0 flex justify-around gap-[24px]">
-            <button>
-              <FontAwesomeIcon
-                className="transition-all transform hover:scale-90"
-                icon={faInstagram}
-                size="2x"
-                style={{
-                  background:
-                    "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
-                  borderRadius: "50%",
-                  padding: "10px",
-                  display: "inline-block",
-                }}
-              />
-            </button>
-            <button>
-              <FontAwesomeIcon
-                className="transition-all transform hover:scale-90"
-                icon={faFacebook}
-                size="2x"
-                style={{
-                  backgroundColor: "#1877F2",
-                  borderRadius: "50%",
-                  padding: "10px",
-                  display: "inline-block",
-                }}
-              />
-            </button>
-
-            <button>
-              <FontAwesomeIcon
-                className="transition-all transform hover:scale-90"
-                icon={faYoutube}
-                size="2x"
-                style={{
-                  backgroundColor: "#FF0000",
-                  borderRadius: "50%",
-                  padding: "10px",
-                  display: "inline-block",
-                }}
-              />
-            </button>
+          <div className="text-[12px] leading-[20px] text-center sm:text-left mt-2 sm:mt-0 flex justify-around gap-[24px]">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1877F2] text-white transition-transform hover:scale-110 shadow-md"
+            >
+              <FontAwesomeIcon icon={faFacebook} size="lg" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 text-white transition-transform hover:scale-110 shadow-md"
+            >
+              <FontAwesomeIcon icon={faInstagram} size="lg" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0077B5] text-white transition-transform hover:scale-110 shadow-md"
+            >
+              <FontAwesomeIcon icon={faLinkedin} size="lg" />
+            </a>
           </div>
         </div>
       </div>

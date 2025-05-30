@@ -5,22 +5,31 @@ const ContactUsForm = () => {
     <section className="min-h-screen  flex items-center justify-center px-4 py-12">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-8">
         
-    {/* Images Section */}
-<div className="relative w-full md:w-1/2 flex justify-center items-center">
+{/* Images Section */}
+<div className="relative w-full md:w-1/4 flex justify-center items-center">
   <div className="relative w-[400px] h-[400px]">
     {/* الكوكب الكبير */}
-    <div className="w-48 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-2xl" />
+    <img
+      src="/images/planet-main.png" // مثلاً صورة الأرض أو زحل
+      alt="Main Planet"
+      className="w-48 h-48 object-contain absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 "
+    />
 
     {/* الكوكب الصغير يدور */}
-    <div className="orbit w-full h-full absolute animate-spin-slow">
-      <div className="w-16 h-16 bg-yellow-300 rounded-full absolute top-0 left-1/2 transform -translate-x-1/2 shadow-md" />
+    <div className="orbit w-full h-full absolute animate-spin-slow z-0">
+      <img
+        src="/images/planet-small.png" // صورة قمر أو كوكب صغير
+        alt="Orbiting Planet"
+        className="w-20 h-20 object-contain absolute top-0 left-1/2 transform -translate-x-1/2"
+      />
     </div>
   </div>
 </div>
 
 
+
         {/* Contact Form Section */}
-        <div className="w-full md:w-1/2 bg-gray-200 rounded-xl shadow-xl p-8">
+        <div className="w-full md:w-2/3 bg-gray-200 rounded-xl shadow-xl p-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Contact Us</h2>
           <form className="space-y-4">
             <input

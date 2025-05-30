@@ -1,5 +1,9 @@
-import { React, lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import MouseTrail from "./MouseTrail";
 
 const SignUp = lazy(() => import("./Authentication/SignUp"));
 const SignIn = lazy(() => import("./Authentication/SignIn"));
@@ -10,9 +14,21 @@ const AboutUsPage = lazy(() => import("./pages/AboutUsPage/index"));
 const Profile = lazy(() => import("./pages/profile/index"));
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 3000,
+      once: false,
+    });
+  }, []);
+
   return (
     <Router>
-      <Suspense>
+      <MouseTrail />
+      <Suspense
+        fallback={
+          <div className="text-white text-center mt-10">Loading...</div>
+        }
+      >
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

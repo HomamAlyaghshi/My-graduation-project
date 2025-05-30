@@ -3,7 +3,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 const Newsletter = () => {
   return (
-    <div className="relative w-full h-[360px] text-white">
+    <div data-aos="fade-up" className="relative w-full h-[360px] text-white">
       <img
         alt="Newsletter"
         src="/images/footer.png"

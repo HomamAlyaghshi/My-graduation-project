@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FcUpload, FcStackOfPhotos, FcApproval } from "react-icons/fc"; // استيراد الأيقونات المناسبة
+import { FcUpload, FcStackOfPhotos, FcApproval } from "react-icons/fc";
 
 const Counter = ({ target, startCounting }) => {
   const [count, setCount] = useState(0);
@@ -78,6 +78,7 @@ const Values = () => {
   return (
     <div
       ref={valuesRef}
+      data-aos="fade-up"
       className="w-full max-w-[1440px] py-[108px] flex justify-between items-center gap-[24px] px-8  "
     >
       {valueItems.map((item, index) => (

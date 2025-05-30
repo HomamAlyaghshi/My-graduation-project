@@ -5,7 +5,10 @@ const BannerGrid = () => {
   return (
     <div className="w-full h-auto md:h-[700px] font-Rajdhani flex flex-col md:flex-row gap-[32px] md:gap-[64px] px-4 py-8  text-white">
       {/* العمود الأيسر */}
-      <div className="relative flex-1 min-h-[300px] md:h-full">
+      <div
+        data-aos="fade-right"
+        className="relative flex-1 min-h-[300px] md:h-full"
+      >
         <img
           src="/images/banner1.png"
           alt="banner1"
@@ -30,7 +33,7 @@ const BannerGrid = () => {
       {/* العمود الأيمن */}
       <div className="flex-1 flex flex-col gap-[24px]">
         {/* العنصر الأول */}
-        <div className="relative flex-1 min-h-[150px]">
+        <div data-aos="fade-down" className="relative flex-1 min-h-[150px]">
           <img
             src="/images/banner2.png"
             alt="banner2"
@@ -54,7 +57,7 @@ const BannerGrid = () => {
         </div>
 
         {/* العنصر الثاني */}
-        <div className="relative flex-1 min-h-[150px]">
+        <div data-aos="fade-up" className="relative flex-1 min-h-[150px]">
           <img
             src="/images/banner3.png"
             alt="banner3"

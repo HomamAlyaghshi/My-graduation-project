@@ -1,4 +1,3 @@
-import React from "react";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
@@ -6,7 +5,10 @@ const Banner = () => {
   return (
     <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon   ">
       <Link to="/ai" className="w-full h-full">
-        <div className=" w-full h-full flex justify-center items-center">
+        <div
+          data-aos="fade-down"
+          className=" w-full h-full flex justify-center items-center"
+        >
           <video
             className="w-full md:w-5/6 flex justify-center items-center  h-full rounded-2xl  hover:scale-95 transition-all duration-500 "
             src="/videos/drop.mp4"
@@ -17,7 +19,10 @@ const Banner = () => {
           />
         </div>
       </Link>
-      <div className=" w-full md:w-1/2  md:h-[532px] md:left-[720px] pr-[16px] md:pr-[160px] pl-[16px] md:pl-[72px] flex justify-center items-center  text-white  rounded-2xl ">
+      <div
+        data-aos="fade-up"
+        className=" w-full md:w-1/2  md:h-[532px] md:left-[720px] pr-[16px] md:pr-[160px] pl-[16px] md:pl-[72px] flex justify-center items-center  text-white  rounded-2xl "
+      >
         {/**العمود الثاني */}
         <div className=" md:w-[452px]  grid gap-[16px] ">
           <p className="text-star font-inter text-[12px] md:text-[16px] font-bold leading-[16px] text-left animate-bounce">

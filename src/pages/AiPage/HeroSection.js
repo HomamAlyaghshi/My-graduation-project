@@ -1,7 +1,10 @@
 import React from "react";
 const HeroSection = () => {
   return (
-    <div className="flex justify-center items-center font-bold text-4xl  text-center my-8 text-white font-Rajdhani">
+    <div
+      data-aos="fade-right"
+      className="flex justify-center items-center font-bold text-4xl  text-center my-8 text-white font-Rajdhani"
+    >
       <div className="grid gap-12">
         <span className="">
           Welcome to the <br /> AI-powered spectral analysis service.
