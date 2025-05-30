@@ -78,12 +78,12 @@ const Values = () => {
   return (
     <div
       ref={valuesRef}
-      className="w-full max-w-[1440px] py-[108px] flex justify-between items-center gap-[24px] px-8 "
+      className="w-full max-w-[1440px] py-[108px] flex justify-between items-center gap-[24px] px-8  "
     >
       {valueItems.map((item, index) => (
         <div
           key={index}
-          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-all duration-500 border border-neon"
+          className="flex-1 max-w-[400px] min-w-[200px] h-auto p-[24px] flex flex-col items-center text-white rounded-3xl text-center shadow-md shadow-neon hover:shadow-white transition-transform duration-500 hover:-translate-y-2 border border-neon"
         >
           <div className="w-full flex justify-center items-center">
             {item.icon} {/* عرض الأيقونة */}

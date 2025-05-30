@@ -9,7 +9,6 @@ module.exports = {
         Rajdhani: ["Rajdhani", "sans-serif"],
       },
       colors: {
-        blue: "#377DFF",
         // === Space Theme Colors ===
         spaceDark: "#0B0F26", // خلفية داكنة (أساسية)
         spaceMid: "#1C1F3A", // لون ثانوي للبطاقات

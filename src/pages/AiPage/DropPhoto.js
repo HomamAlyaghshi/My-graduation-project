@@ -34,41 +34,52 @@ const DropPhoto = () => {
     handleFile(file);
   };
 
+  const handleSubmit = () => {
+    console.log("Done");
+  };
+
+  const handleDelete = () => {
+    setImageSrc(null);
+  };
+
   return (
     <div
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      style={{
-        border: "2px dashed #aaa",
-        padding: "250px",
-        textAlign: "center",
-        borderRadius: "10px",
-        backgroundColor: isDragging ? "#f0f0f0" : "#fff",
-        transition: "background-color 0.2s ease",
-      }}
+      className={`h-[500px] w-full border-2 border-dashed rounded-xl flex flex-col m-4 items-center justify-center transition-colors duration-200 ${
+        isDragging ? "bg-slate-600" : "bg-slate-300"
+      }`}
     >
       {imageSrc ? (
-        <img
-          src={imageSrc}
-          alt="Dropped"
-          style={{ maxWidth: "100%", maxHeight: "300px" }}
-        />
+        <>
+          <img
+            src={imageSrc}
+            alt="Dropped"
+            className="max-w-full max-h-[250px] mb-5 "
+          />
+          <div className="flex gap-4">
+            <button
+              onClick={handleSubmit}
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+            >
+              Submit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+            >
+              Delete
+            </button>
+          </div>
+        </>
       ) : (
-        <div className="font-Rajdhani font-bold">
+        <div className="text-center font-bold font-Rajdhani">
           <p>Drop your photo here</p>
-          <p>Or</p>
+          <p className="my-2">Or</p>
           <button
             onClick={() => fileInputRef.current.click()}
-            style={{
-              marginTop: "10px",
-              padding: "8px 16px",
-              backgroundColor: "#4F46E5",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
+            className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
           >
             Upload Photo
           </button>
@@ -76,7 +87,7 @@ const DropPhoto = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: "none" }}
+            className="hidden"
             onChange={handleFileChange}
           />
         </div>
