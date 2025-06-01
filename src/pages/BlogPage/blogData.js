@@ -1,11 +1,11 @@
 const blogData = [
   {
     image: "/images/blog1.png",
-    title: "Dark Matter Revealed: Unlocking the Universe's Hidden Forces",
+    title: "Dark Matter Revealed: Unlocking the Universe's ",
     author: "Dr. Sarah Whitman",
     date: "2024-09-18",
     views: 8421,
-    category: "Celestial Bodies", // إضافة الصنف
+    category: "Celestial Bodies",
     contentParts: {
       intro: `
           In the vast emptiness of space, a mystery has confounded scientists for nearly a century: the existence of dark matter. Unlike ordinary matter—the stuff that makes up stars, planets, and humans—dark matter does not emit, absorb, or reflect light. It’s completely invisible. Yet, its gravitational effects on galaxies and cosmic structures are undeniable.
@@ -80,7 +80,7 @@ const blogData = [
     author: "Emily Zhang",
     date: "2024-12-05",
     views: 5194,
-    category: "Celestial Bodies", // علم وفلك عام أو أبحاث فضائية
+    category: "Celestial Bodies",
     contentParts: {
       intro: `
           Quantum computing is poised to revolutionize technology by leveraging the strange behavior of subatomic particles to perform computations far beyond today's capabilities.
@@ -102,7 +102,7 @@ const blogData = [
     author: "Andre Cole",
     date: "2024-09-22",
     views: 7812,
-    category: "Celestial Bodies", // يمكن تصنيفه ضمن التقنية الفضائية أو الذكاء الاصطناعي
+    category: "Celestial Bodies",
     contentParts: {
       intro: `
           From generating surreal images to composing symphonies, artificial intelligence is stepping into the world of art—blurring the lines between human and machine creativity.
