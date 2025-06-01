@@ -1,15 +1,17 @@
 import React, { lazy, Suspense } from "react";
 import { useInView } from "react-intersection-observer";
 
+// Non-lazy imports
+import NavBar from "../../Shared/NavBar";
+import Values from "../../Shared/values";
+import Newsletter from "../../Shared/Newsletter";
+import Footer from "../../Shared/Footer";
+
 // Lazy imports
-const NavBar = lazy(() => import("../../Shared/NavBar"));
 const Slider = lazy(() => import("./Slider"));
 const Banner = lazy(() => import("./Banner"));
-const Values = lazy(() => import("../../Shared/values"));
 const BannerGrid = lazy(() => import("./BannerGrid"));
 const BlogSectaion = lazy(() => import("./BlogSectaion"));
-const Newsletter = lazy(() => import("../../Shared/Newsletter"));
-const Footer = lazy(() => import("../../Shared/Footer"));
 
 const LazySection = ({ children }) => {
   const { ref, inView } = useInView({
@@ -35,9 +37,7 @@ const LazySection = ({ children }) => {
 const HomePage = () => {
   return (
     <div className="w-full h-full bg-gradient-to-b from-[#00000F] via-[#0a1d3a] to-[#3a5f91]">
-      <LazySection>
-        <NavBar />
-      </LazySection>
+      <NavBar />
 
       <LazySection>
         <Slider />
@@ -47,9 +47,7 @@ const HomePage = () => {
         <Banner />
       </LazySection>
 
-      <LazySection>
-        <Values />
-      </LazySection>
+      <Values />
 
       <LazySection>
         <BannerGrid />
@@ -59,13 +57,8 @@ const HomePage = () => {
         <BlogSectaion />
       </LazySection>
 
-      <LazySection>
-        <Newsletter />
-      </LazySection>
-
-      <LazySection>
-        <Footer />
-      </LazySection>
+      <Newsletter />
+      <Footer />
     </div>
   );
 };
