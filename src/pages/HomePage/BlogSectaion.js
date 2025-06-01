@@ -35,7 +35,7 @@ const BlogSection = () => {
               </p>
               <div className="flex w-full items-center">
                 <button className="flex items-center whitespace-nowrap bg-neon rounded-3xl shadow-md hover:scale-105 transition-all duration-500 delay-200 shadow-white hover:shadow-black hover:text-star hover:shadow-xl px-5 py-2 justify-center h-auto gap-[4px] border-b border-transparent text-[14px] md:text-[16px]">
-                  {post.readMoreText}
+                  Read More{" "}
                   <ArrowRightIcon className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                 </button>
               </div>

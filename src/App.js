@@ -27,7 +27,7 @@ function App() {
       <MouseTrail />
       <Suspense
         fallback={
-          <div className="text-white text-center mt-10">Loading...</div>
+          <div className="text-spaceDark text-center mt-10">Loading...</div>
         }
       >
         <Routes>
