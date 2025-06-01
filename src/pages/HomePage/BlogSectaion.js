@@ -21,8 +21,8 @@ const BlogSection = () => {
           </Link>
         </div>
       </div>
-      <div className="h-auto w-full   grid  items-center justify-center   grid-cols-1 sm:grid-cols-2 md:grid-cols-3  px-4 md:px-12 md:gap-6">
-        {blogData.map((post, index) => (
+      <div className="h-auto w-full grid items-center justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4 md:px-12 md:gap-6">
+        {blogData.slice(0, 3).map((post, index) => (
           <Link to={`/blog/${index}`} key={index}>
             <div className="flex flex-col justify-around items-center text-center w-full gap-[8px] cursor-pointer">
               <img

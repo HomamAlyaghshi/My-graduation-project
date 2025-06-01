@@ -41,10 +41,11 @@ const NavBar = () => {
 
       <Link to={"/homepage"}>
         <button className="font-Orbitron text-[30px] leading-[24px] text-center hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold">
-          <FcGraduationCap className="inline-block w-9 h-9 " /> SpaceX.
+          <FcGraduationCap className="inline-block w-9 h-9" /> SpaceX.
         </button>
       </Link>
 
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div
           ref={menuRef}
@@ -56,8 +57,14 @@ const NavBar = () => {
             </Link>
             <Link to="/ai">
               <button className={getLinkClass("/ai")}>
-                <FcGlobe className="inline-block w-6 h-6 " /> AI Service
+                <FcGlobe className="inline-block w-6 h-6" /> AI Service
               </button>
+            </Link>
+            <Link to="/blogpage">
+              <button className={getLinkClass("/blogpage")}>Articles</button>
+            </Link>
+            <Link to="/aboutuspage">
+              <button className={getLinkClass("/aboutuspage")}>About Us</button>
             </Link>
             <Link to="/contactuspage">
               <button className={getLinkClass("/contactuspage")}>
@@ -71,26 +78,37 @@ const NavBar = () => {
         </div>
       )}
 
+      {/* Desktop Menu */}
       <div className="hidden md:flex gap-[30px]">
         <Link to="/homepage">
           <button className={getLinkClass("/homepage")}>Home</button>
         </Link>
-        <hr className=" bg-white w-[1px] border-none h-5 opacity-10" />
+        <hr className="bg-white w-[1px] border-none h-5 opacity-10" />
 
         <Link to="/ai">
           <button className={getLinkClass("/ai")}>
             <FcGlobe className="inline-block w-6 h-6" /> AI Service
           </button>
         </Link>
-        <hr className=" bg-white w-[1px] border-none h-5 opacity-10" />
+        <hr className="bg-white w-[1px] border-none h-5 opacity-10" />
 
-        <Link to={"/contactuspage"}>
+        <Link to="/blogpage">
+          <button className={getLinkClass("/blogpage")}>Articles</button>
+        </Link>
+        <hr className="bg-white w-[1px] border-none h-5 opacity-10" />
+
+        <Link to="/aboutuspage">
+          <button className={getLinkClass("/aboutuspage")}>About Us</button>
+        </Link>
+        <hr className="bg-white w-[1px] border-none h-5 opacity-10" />
+
+        <Link to="/contactuspage">
           <button className={getLinkClass("/contactuspage")}>Contact Us</button>
         </Link>
       </div>
 
       <div className="hidden md:flex">
-        <Link to={"/profile"}>
+        <Link to="/profile">
           <button>
             <UserCircleIcon className="w-8 h-8 text-white hover:text-blue" />
           </button>

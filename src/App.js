@@ -13,6 +13,7 @@ const ContactUsPage = lazy(() => import("./pages/ContactUsPage/index"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage/index"));
 const Profile = lazy(() => import("./pages/profile/index"));
 const BlogDetails = lazy(() => import("./pages/BlogPage/BlogDetails"));
+const BlogPage = lazy(() => import("./pages/BlogPage/blogPage"));
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/contactuspage" element={<ContactUsPage />} />
           <Route path="/aboutuspage" element={<AboutUsPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/blogpage" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
       </Suspense>
