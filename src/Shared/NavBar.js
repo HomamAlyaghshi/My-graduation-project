@@ -1,18 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { UserCircleIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
-import { FcGraduationCap, FcGlobe } from "react-icons/fc"; // استيراد الأيقونات الجديدة
+import { FcGraduationCap, FcGlobe } from "react-icons/fc";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null); // إنشاء مرجع للقائمة
-  const location = useLocation(); // استخدم useLocation لمعرفة المسار الحالي
+  const menuRef = useRef(null);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // إغلاق القائمة عند النقر خارجها
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -28,7 +27,7 @@ const NavBar = () => {
 
   const getLinkClass = (path) => {
     return location.pathname === path
-      ? "text-yellow-400 font-bold" // إذا كان المسار الحالي هو نفس الرابط، اجعل اللون أصفر
+      ? "text-yellow-400 font-bold"
       : "text-white font-medium hover:text-neon transform transition-all hover:scale-90";
   };
 
@@ -39,11 +38,13 @@ const NavBar = () => {
           <Bars3Icon className="w-6 h-6 text-neon" />
         </button>
       </div>
+
       <Link to={"/homepage"}>
         <button className="font-Orbitron text-[30px] leading-[24px] text-center hover:text-subText transition-all duration-200 hover:scale-95 transform font-bold">
           <FcGraduationCap className="inline-block w-9 h-9 " /> SpaceX.
         </button>
       </Link>
+
       {isMenuOpen && (
         <div
           ref={menuRef}
@@ -69,6 +70,7 @@ const NavBar = () => {
           </div>
         </div>
       )}
+
       <div className="hidden md:flex gap-[30px]">
         <Link to="/homepage">
           <button className={getLinkClass("/homepage")}>Home</button>
@@ -86,6 +88,7 @@ const NavBar = () => {
           <button className={getLinkClass("/contactuspage")}>Contact Us</button>
         </Link>
       </div>
+
       <div className="hidden md:flex">
         <Link to={"/profile"}>
           <button>

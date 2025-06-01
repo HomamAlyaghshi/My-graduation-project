@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
+import { FaRocket } from "react-icons/fa";
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [launching, setLaunching] = useState(false); // حالة الانطلاق
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -34,8 +36,22 @@ const DropPhoto = () => {
     handleFile(file);
   };
 
+  const handleSubmitWithLaunch = () => {
+    if (launching) return; // منع الضغط المتكرر
+    setLaunching(true);
+
+    setTimeout(() => {
+      setLaunching(false);
+      handleSubmit();
+    }, 2000); // مدة تأثير الصاروخ (2 ثانية)
+  };
+
   const handleSubmit = () => {
-    console.log("Done");
+    setLaunching(true); // بدء الحركة
+    setTimeout(() => {
+      console.log("Done");
+      setLaunching(false); // إعادة الوضع الطبيعي بعد انتهاء الحركة
+    }, 1000); // مدة الطيران (1 ثانية مثلًا)
   };
 
   const handleDelete = () => {
@@ -50,7 +66,7 @@ const DropPhoto = () => {
       onDrop={handleDrop}
       className={`h-[500px] w-full border-2 border-dashed rounded-xl flex flex-col m-4 items-center justify-center transition-colors duration-200 ${
         isDragging ? "bg-slate-600" : "bg-slate-300"
-      }`}
+      } relative`} // relative مهم للعنصر المتحرك
     >
       {imageSrc ? (
         <>
@@ -59,11 +75,19 @@ const DropPhoto = () => {
             alt="Dropped"
             className="max-w-full max-h-[250px] mb-5 "
           />
-          <div className="flex gap-4">
+          <div className="flex gap-4 relative">
             <button
               onClick={handleSubmit}
-              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition relative overflow-hidden"
             >
+              <FaRocket
+                className={`transition-transform duration-700 ease-out ${
+                  launching
+                    ? "-translate-y-16 opacity-0"
+                    : "translate-y-0 opacity-100"
+                }`}
+                size={20}
+              />
               Submit
             </button>
             <button

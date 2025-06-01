@@ -1,10 +1,19 @@
 import NavBar from "../../Shared/NavBar";
 import ContactUsForm from "./ContactUsForm";
+import Footer from "./../../Shared/Footer";
+import HeroSection from "./HeroSection";
 const ContactUsPage = () => {
   return (
     <div className="w-full h-full bg-gradient-to-b from-[#00000F] via-[#0a1d3a] to-[#3a5f91]  ">
       <NavBar />
-      <ContactUsForm />
+      <div className="grid grid-cols-2 mt-4">
+        <HeroSection />
+        <div className=" flex justify-center items-center">
+          <ContactUsForm />
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 };

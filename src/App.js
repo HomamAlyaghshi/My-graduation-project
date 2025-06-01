@@ -12,6 +12,7 @@ const AiPage = lazy(() => import("./pages/AiPage/index"));
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage/index"));
 const AboutUsPage = lazy(() => import("./pages/AboutUsPage/index"));
 const Profile = lazy(() => import("./pages/profile/index"));
+const BlogDetails = lazy(() => import("./pages/BlogPage/BlogDetails"));
 
 function App() {
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/contactuspage" element={<ContactUsPage />} />
           <Route path="/aboutuspage" element={<AboutUsPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
       </Suspense>
     </Router>

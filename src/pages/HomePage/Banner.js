@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon   ">
+    <div className="md:h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon   ">
       <Link to="/ai" className="w-full h-full">
         <div
           data-aos="fade-down"
-          className=" w-full h-full flex justify-center items-center"
+          className=" w-full h-full flex justify-center items-center border-2 rounded-2xl border-neon"
         >
           <video
             className="w-full md:w-5/6 flex justify-center items-center  h-full rounded-2xl  hover:scale-95 transition-all duration-500 "
@@ -36,10 +36,12 @@ const Banner = () => {
             of celestial spectra to unlock the secrets of the universe
           </p>
           <div className="flex   transition-all duration-200 transform hover:scale-95 w-[100px] ">
-            <button className=" h-auto mt-2 flex items-center whitespace-nowrap rounded-2xl hover:text-star bg-space-gradient px-4 py-2  transition-all duration-500 transform hover:scale-105 delay-100 hover:shadow-lg hover:shadow-black">
-              Discover Now
-              <ArrowRightIcon className="ml-2 w-4 h-4 md:w-5 md:h-5" />
-            </button>
+            <Link to="/ai">
+              <button className=" h-auto mt-2 flex items-center whitespace-nowrap rounded-2xl hover:text-star bg-space-gradient px-4 py-2  transition-all duration-500 transform hover:scale-105 delay-100 hover:shadow-lg hover:shadow-black">
+                Discover Now
+                <ArrowRightIcon className="ml-2 w-4 h-4 md:w-5 md:h-5" />
+              </button>
+            </Link>
           </div>
         </div>
       </div>
