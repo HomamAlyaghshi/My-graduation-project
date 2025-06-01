@@ -61,7 +61,7 @@ const DropPhoto = () => {
 
   return (
     <div
-      data-aos="fade-left"
+      data-aos="fade-right"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}

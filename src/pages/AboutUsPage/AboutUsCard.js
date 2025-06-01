@@ -23,7 +23,10 @@ const teamMembers = [
 const OurTeam = () => {
   return (
     <div className="flex justify-center items-center min-h-screen px-4 ">
-      <div className="flex justify-between gap-8 w-full max-w-5xl flex-wrap">
+      <div
+        data-aos="fade-up"
+        className="flex justify-between gap-8 w-full max-w-5xl flex-wrap"
+      >
         {teamMembers.map((member, idx) => (
           <div
             key={idx}

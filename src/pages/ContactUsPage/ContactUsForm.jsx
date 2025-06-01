@@ -1,7 +1,7 @@
 
 const ContactUsForm = () => {
   return (
-    <section data-aos='fade-left' className=" md:py-20  flex items-center justify-center px-4 ">
+    <section data-aos='fade-right' className=" md:py-20  flex items-center justify-center px-4 ">
       <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-between gap-8 ">
         {/* Contact Form Section */}
         <div className="w-full  bg-gray-200 rounded-xl shadow-xl p-8 py-12">
