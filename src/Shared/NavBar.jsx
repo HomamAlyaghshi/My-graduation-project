@@ -107,7 +107,7 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <div className="hidden md:flex">
+      <div className="hidden md:flex mr-3">
         <Link to="/profile">
           <button>
             <UserCircleIcon className="w-8 h-8 text-white hover:text-blue" />

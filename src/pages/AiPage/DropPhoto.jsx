@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FaRocket } from "react-icons/fa";
+import Button2 from "../../Components/Button2";
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -102,12 +103,9 @@ const DropPhoto = () => {
         <div className="text-center font-bold font-Rajdhani">
           <p>Drop your photo here</p>
           <p className="my-2">Or</p>
-          <button
-            onClick={() => fileInputRef.current.click()}
-            className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
-          >
+          <Button2 onClick={() => fileInputRef.current.click()}>
             Upload Photo
-          </button>
+          </Button2>
           <input
             type="file"
             accept="image/*"

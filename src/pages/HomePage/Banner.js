@@ -1,5 +1,6 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import Button from "../../Components/Button";
 
 const Banner = () => {
   return (
@@ -36,12 +37,7 @@ const Banner = () => {
             of celestial spectra to unlock the secrets of the universe
           </p>
           <div className="flex   transition-all duration-200 transform hover:scale-95 w-[100px] ">
-            <Link to="/ai">
-              <button className=" h-auto mt-2 flex items-center whitespace-nowrap rounded-2xl hover:text-star bg-space-gradient px-4 py-2  transition-all duration-500 transform hover:scale-105 delay-100 hover:shadow-lg hover:shadow-black">
-                Discover Now
-                <ArrowRightIcon className="ml-2 w-4 h-4 md:w-5 md:h-5" />
-              </button>
-            </Link>
+            <Button to={"/ai"}>Discover Now</Button>
           </div>
         </div>
       </div>
