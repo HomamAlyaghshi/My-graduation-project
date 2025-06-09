@@ -6,6 +6,7 @@ import NavBar from "../../Shared/NavBar";
 import Values from "../../Shared/values";
 import Newsletter from "../../Shared/Newsletter";
 import Footer from "../../Shared/Footer";
+import HeroSection from "./HeroSection";
 
 // Lazy imports
 const Slider = lazy(() => import("./Slider"));
@@ -42,6 +43,7 @@ const HomePage = () => {
       <LazySection>
         <Slider />
       </LazySection>
+      <HeroSection />
 
       <LazySection>
         <Banner />

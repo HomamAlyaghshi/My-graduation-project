@@ -35,11 +35,11 @@ const Slider = () => {
   }, []);
 
   return (
-    <div className="Slider overflow-hidden w-full h-full">
+    <div className="Slider w-full h-screen overflow-hidden relative">
       {/* Slider Wrapper */}
       <div
         data-aos="fade-up"
-        className="relative max-w-[90%] md:max-w-[85%] mx-auto h-[536px] overflow-hidden shadow-neon shadow-xl rounded-md"
+        className="relative w-full h-full overflow-hidden"
       >
         {/* Slides */}
         {videos.map((video, index) => (
@@ -65,7 +65,7 @@ const Slider = () => {
               autoPlay
               loop
               playsInline
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
         ))}
@@ -98,24 +98,7 @@ const Slider = () => {
         </div>
       </div>
 
-      {/* النص أسفل الفيديو */}
-      <div className="w-full flex flex-col md:flex-row justify-center items-center mt-[16px] sm:my-[72px] mb-[32px] px-4 text-white text-center md:text-left">
-        <div
-          data-aos="fade-right"
-          className="flex-1 max-w-[643px] font-poppins text-[28px] md:text-[58px] font-medium leading-[38px] md:leading-[76px] tracking-[-2px]"
-        >
-          Exploring the Cosmos/
-          <br /> Unlocking the Universe.
-        </div>
-        <div
-          data-aos="fade-left"
-          className="flex-1 max-w-[453px] mt-4 md:mt-0 md:ml-6 font-inter text-[12px] md:text-[16px] font-normal leading-[20px] md:leading-[26px]"
-        >
-          <strong className="text-star">Homam</strong> is a platform dedicated
-          to space exploration, celestial phenomena, and inspiring curiosity
-          about the universe.
-        </div>
-      </div>
+      
     </div>
   );
 };
