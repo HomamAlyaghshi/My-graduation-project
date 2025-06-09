@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
-import { FaRocket } from "react-icons/fa";
-import Button2 from "../../Components/Button2";
+// Removed FaRocket import as it's no longer needed
+// import Button2 from "../../Components/Button2"; // Assuming Button2 is themed correctly
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [launching, setLaunching] = useState(false); // حالة الانطلاق
+  const [isSubmitting, setIsSubmitting] = useState(false); // State for overall submission process
+  const [submitMessage, setSubmitMessage] = useState(""); // For messages like "Done!" or "Uploading..."
   const fileInputRef = useRef(null);
 
+  // === Drag and Drop Handlers ===
   const handleDragOver = (e) => {
     e.preventDefault();
     setIsDragging(true);
@@ -24,11 +26,17 @@ const DropPhoto = () => {
     handleFile(file);
   };
 
+  // === File Handling ===
   const handleFile = (file) => {
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
-      reader.onload = () => setImageSrc(reader.result);
+      reader.onloadend = () => { // Use onloadend for more reliable loading
+        setImageSrc(reader.result);
+        setSubmitMessage(""); // Clear any previous messages
+      };
       reader.readAsDataURL(file);
+    } else if (file) {
+      alert("Please drop an image file (e.g., .jpg, .png, .gif)."); // Simple feedback for non-image files
     }
   };
 
@@ -37,26 +45,59 @@ const DropPhoto = () => {
     handleFile(file);
   };
 
-  const handleSubmitWithLaunch = () => {
-    if (launching) return; // منع الضغط المتكرر
-    setLaunching(true);
-
-    setTimeout(() => {
-      setLaunching(false);
-      handleSubmit();
-    }, 2000); // مدة تأثير الصاروخ (2 ثانية)
-  };
-
+  // === Submission Logic (without rocket animation) ===
   const handleSubmit = () => {
-    setLaunching(true); // بدء الحركة
+    if (isSubmitting || !imageSrc) return; // Prevent multiple clicks or submission without image
+
+    setIsSubmitting(true);
+    setSubmitMessage("Processing..."); // Indicate that something is happening
+
+    // Simulate network request or processing
     setTimeout(() => {
-      console.log("Done");
-      setLaunching(false); // إعادة الوضع الطبيعي بعد انتهاء الحركة
-    }, 1000); // مدة الطيران (1 ثانية مثلًا)
+      console.log("Image processed and submitted!");
+      setSubmitMessage("Done!"); // Final success message
+
+      // In a real application, you'd send `imageSrc` to your backend here
+      // fetch('/api/upload', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ image: imageSrc }),
+      //   headers: { 'Content-Type': 'application/json' },
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   setSubmitMessage("Success!");
+      //   console.log("Upload successful:", data);
+      // })
+      // .catch(error => {
+      //   setSubmitMessage("Failed!");
+      //   console.error("Upload error:", error);
+      // })
+      // .finally(() => {
+      //   setTimeout(() => {
+      //     setIsSubmitting(false);
+      //     setSubmitMessage("");
+      //     // Optional: Clear image after successful submission
+      //     // setImageSrc(null);
+      //   }, 1500); // Keep "Done!" message for a bit
+      // });
+
+      // After a short delay, reset submission state and clear message
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitMessage("");
+        // Optionally clear the image after successful submission
+        // setImageSrc(null);
+      }, 1500); // How long "Done!" message stays
+    }, 1000); // Shorter duration as there's no complex animation
   };
 
+  // === Delete Image ===
   const handleDelete = () => {
     setImageSrc(null);
+    setSubmitMessage(""); // Clear any messages when deleting
+    if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Clear the input so same file can be selected again
+    }
   };
 
   return (
@@ -65,47 +106,64 @@ const DropPhoto = () => {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`h-[500px] w-full border-2 border-dashed rounded-xl flex flex-col m-4 items-center justify-center transition-colors duration-200 ${
-        isDragging ? "bg-slate-600" : "bg-slate-300"
-      } relative`} // relative مهم للعنصر المتحرك
+      className={`h-[500px] w-full border-2 border-dashed rounded-xl flex flex-col m-4 items-center justify-center transition-colors duration-200
+                  ${isDragging ? "bg-spaceMid border-neon" : "bg-spaceDark border-subText"} relative p-4`}
     >
       {imageSrc ? (
+        // === Image Displayed ===
         <>
           <img
             src={imageSrc}
-            alt="Dropped"
-            className="max-w-full max-h-[250px] mb-5 "
+            alt="Uploaded photo preview"
+            className="max-w-full h-[250px] object-contain mb-5 rounded-md shadow-lg shadow-neon/20"
           />
-          <div className="flex gap-4 relative">
+          <div className="flex flex-col sm:flex-row gap-4 relative">
+            {/* Submit Button (without rocket icon or animation) */}
             <button
               onClick={handleSubmit}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition relative overflow-hidden"
+              className={`flex items-center justify-center gap-2 px-6 py-3 bg-neon text-spaceDark rounded-xl font-bold text-lg
+                          hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
+                          focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-spaceDark
+                          shadow-lg hover:shadow-neon/60
+                          ${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
+              disabled={isSubmitting}
             >
-              <FaRocket
-                className={`transition-transform duration-700 ease-out ${
-                  launching
-                    ? "-translate-y-16 opacity-0"
-                    : "translate-y-0 opacity-100"
-                }`}
-                size={20}
-              />
-              Submit
+              {isSubmitting ? "Processing..." : "Submit"}
             </button>
+
+            {/* Delete Button */}
             <button
               onClick={handleDelete}
-              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+              className="px-6 py-3 bg-red-700 text-lightText rounded-xl font-bold text-lg
+                         hover:bg-red-800 hover:scale-[0.98] transition duration-300
+                         focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-spaceDark"
+              disabled={isSubmitting}
             >
               Delete
             </button>
           </div>
+          {/* Submission Status Message */}
+          {submitMessage && (
+            <p className="mt-4 text-star text-lg font-bold transition-opacity duration-300">
+              {submitMessage}
+            </p>
+          )}
         </>
       ) : (
-        <div className="text-center font-bold font-Rajdhani">
-          <p>Drop your photo here</p>
-          <p className="my-2">Or</p>
-          <Button2 onClick={() => fileInputRef.current.click()}>
+        // === No Image Displayed ===
+        <div className="text-center font-bold font-Rajdhani text-lightText">
+          <p className="text-xl sm:text-2xl">Drop your photo here</p>
+          <p className="my-3 text-subText">Or</p>
+          {/* Button for file input */}
+          <button
+            onClick={() => fileInputRef.current.click()}
+            className="px-6 py-3 bg-neon text-spaceDark rounded-xl font-bold text-lg
+                       hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
+                       focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-spaceDark
+                       shadow-lg hover:shadow-neon/60"
+          >
             Upload Photo
-          </Button2>
+          </button>
           <input
             type="file"
             accept="image/*"

@@ -8,7 +8,7 @@ const HeroSection = () => {
         <span className="">
           Welcome to the <br /> AI-powered spectral analysis service.
         </span>
-        <span className="bg-space-text bg-clip-text text-transparent py-2 animate-pulse ">
+        <span className="bg-space-text bg-clip-text text-transparent py-2 animate-pulse font-Orbitron">
           Upload your image here
         </span>
       </div>

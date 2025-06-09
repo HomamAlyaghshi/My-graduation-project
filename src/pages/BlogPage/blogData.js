@@ -1,7 +1,7 @@
 const blogData = [
   {
     image: "/images/blog1.png",
-    title: "Dark Matter Revealed: Unlocking the Universe's ",
+    title: "The Search for Exoplanets: New Worlds Beyond Our Solar System",
     author: "Dr. Sarah Whitman",
     date: "2024-09-18",
     views: 8421,
