@@ -7,7 +7,7 @@ const BlogSection = () => {
   return (
     <div
       data-aos="fade-up"
-      className=" h-auto py-[24px] md:py-[48px] grid gap-[24px] justify-center items-center font-Rajdhani text-white"
+      className=" h-auto py-[24px] md:py-[48px] grid gap-[24px] justify-center items-center font-Rajdhani text-white "
     >
       <div className="  h-auto md:h-[88px] flex flex-col md:flex-row justify-between items-center px-4 md:px-0 mx-8">
         <div className=" text-[28px] md:text-[40px] font-medium leading-[32px] md:leading-[44px] tracking-[-0.4px] text-left">
@@ -34,7 +34,7 @@ const BlogSection = () => {
               <p className="text-[18px] md:text-[20px] font-medium leading-[24px] md:leading-[28px] text-left">
                 {post.title}
               </p>
-              <div className="flex w-full items-center">
+              <div className="flex w-full items-center mb-4">
                 <Button2>Read More</Button2>
               </div>
             </div>
