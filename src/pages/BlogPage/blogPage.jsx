@@ -24,7 +24,9 @@ const BlogPage = () => {
       post.contentParts?.intro.toLowerCase().includes(keyword);
 
     const matchesAuthor = authorFilter ? post.author === authorFilter : true;
-    const matchesCategory = categoryFilter ? post.category === categoryFilter : true;
+    const matchesCategory = categoryFilter
+      ? post.category === categoryFilter
+      : true;
 
     return matchesKeyword && matchesAuthor && matchesCategory;
   });
@@ -34,8 +36,9 @@ const BlogPage = () => {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-[#00000F] via-[#0a1d3a] to-[#3a5f91] text-white font-Rajdhani">
       <NavBar />
-      <HeroSection />
-
+      <div className="py-8 md:pt-14">
+        <HeroSection />
+      </div>
       <div className="px-4 md:px-12 py-8">
         <BlogFilters
           showFilter={showFilter}
@@ -52,7 +55,9 @@ const BlogPage = () => {
 
         <div className="flex flex-col gap-10">
           {displayedPosts.length === 0 && (
-            <p className="text-center text-gray-400 mt-20">No articles found.</p>
+            <p className="text-center text-gray-400 mt-20">
+              No articles found.
+            </p>
           )}
 
           {displayedPosts.map((post, index) => (
@@ -71,7 +76,6 @@ const BlogPage = () => {
           )}
         </div>
       </div>
-
       <Newsletter />
       <Footer />
     </div>
@@ -79,4 +83,3 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
-
