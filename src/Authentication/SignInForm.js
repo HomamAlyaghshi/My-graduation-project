@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Button2 from "./../Components/Button2";
+import { login } from "../api";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const SignInForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -20,17 +21,22 @@ const SignInForm = () => {
       return;
     }
 
-    console.log("Attempting to sign in with:", { email, password });
-
-    setTimeout(() => {
-      console.log("Login successful (simulated)!");
+    try {
+      const response = await login({ email, password });
+      localStorage.setItem("token", response.data.token);
+      console.log("Login successful:", response.data);
       navigate("/homepage");
-    }, 1000);
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message ||
+        "Login failed. Please check your credentials.";
+      setError(errorMessage);
+    }
   };
 
   return (
     <form
-      className="p-6 sm:p-8 max-w-md w-full mx-auto rounded-xl text-white font-Rajdhani" // Responsive padding and width
+      className="p-6 sm:p-8 max-w-md w-full mx-auto rounded-xl text-white font-Rajdhani"
       onSubmit={handleSubmit}
     >
       {/* Welcome Introduction */}
