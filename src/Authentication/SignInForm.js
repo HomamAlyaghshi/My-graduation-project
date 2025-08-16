@@ -23,8 +23,14 @@ const SignInForm = () => {
 
     try {
       const response = await login({ email, password });
-      localStorage.setItem("token", response.data.token);
-      console.log("Login successful:", response.data);
+
+      const { user, token, token_type } = response.data.data;
+
+      localStorage.setItem("token", `${token_type} ${token}`);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      console.log("Login successful:", user);
+
       navigate("/homepage");
     } catch (err) {
       const errorMessage =
@@ -39,7 +45,6 @@ const SignInForm = () => {
       className="p-6 sm:p-8 max-w-md w-full mx-auto rounded-xl text-white font-Rajdhani"
       onSubmit={handleSubmit}
     >
-      {/* Welcome Introduction */}
       <p className="text-sm mb-1 opacity-60 text-center sm:text-left">
         Login to your account
       </p>
@@ -56,7 +61,6 @@ const SignInForm = () => {
         </p>
       )}
 
-      {/* Email Field */}
       <div className="mb-4">
         <label htmlFor="email" className="block text-sm font-semibold mb-1">
           Email
@@ -64,8 +68,7 @@ const SignInForm = () => {
         <input
           type="email"
           id="email"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
+          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300 placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
           placeholder="example@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -74,7 +77,6 @@ const SignInForm = () => {
         />
       </div>
 
-      {/* Password Field */}
       <div className="mb-2 relative">
         <label htmlFor="password" className="block text-sm font-semibold mb-1">
           Password
@@ -82,8 +84,7 @@ const SignInForm = () => {
         <input
           type={showPassword ? "text" : "password"}
           id="password"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30 pr-10"
+          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300 placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30 pr-10"
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -100,7 +101,6 @@ const SignInForm = () => {
         </button>
       </div>
 
-      {/* Forgot Password Link */}
       <div className="text-right mb-6">
         <Link to="/forgot-password">
           <button
@@ -112,18 +112,13 @@ const SignInForm = () => {
         </Link>
       </div>
 
-      {/* Sign In Button */}
       <Button2
         type="submit"
-        className="w-full bg-neon text-gray-900 rounded-xl font-bold text-lg
-                   hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
-                   focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-black
-                   shadow-lg hover:shadow-neon/60"
+        className="w-full bg-neon text-gray-900 rounded-xl font-bold text-lg hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-black shadow-lg hover:shadow-neon/60"
       >
         Sign In
       </Button2>
 
-      {/* Sign Up Link */}
       <p className="text-center text-sm text-gray-400 mt-6">
         Don't have an account?{" "}
         <Link

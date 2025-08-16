@@ -7,7 +7,6 @@ import { register } from "../api";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [agree, setAgree] = useState(false);
@@ -19,7 +18,7 @@ const SignUpForm = () => {
     e.preventDefault();
     setError("");
 
-    if (!name || !username || !email || !password) {
+    if (!name || !email || !password) {
       setError("Please fill in all fields.");
       return;
     }
@@ -30,12 +29,20 @@ const SignUpForm = () => {
     }
 
     try {
-      await register({ email, password });
-      alert("Registration successful! Please log in.");
-      navigate("/login");
+      const response = await register({ name, email, password });
+
+      // لو الباكيند يرجع توكن مع بيانات المستخدم
+      const { user, token, token_type } = response.data.data;
+      localStorage.setItem("token", `${token_type} ${token}`);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      console.log("Registration successful:", user);
+
+      navigate("/homepage"); // يوديه مباشرة للصفحة الرئيسية
     } catch (err) {
       const errorMessage =
         err.response?.data?.message ||
+        err.response?.data?.errors?.email?.[0] ||
         "Registration failed. Please check your details.";
       setError(errorMessage);
     }
@@ -46,7 +53,6 @@ const SignUpForm = () => {
       className="p-6 sm:p-8 max-w-md w-full mx-auto rounded-xl text-white font-Rajdhani"
       onSubmit={handleSubmit}
     >
-      {/* Welcome Introduction */}
       <p className="text-sm mb-1 opacity-60 text-center sm:text-left">
         Create a New Account
       </p>
@@ -71,28 +77,10 @@ const SignUpForm = () => {
         <input
           type="text"
           id="name"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
+          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300 placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-
-      {/* Username Field */}
-      <div className="mb-4">
-        <label htmlFor="username" className="block text-sm font-semibold mb-1">
-          Username
-        </label>
-        <input
-          type="text"
-          id="username"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
-          placeholder="Enter your username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </div>
@@ -105,8 +93,7 @@ const SignUpForm = () => {
         <input
           type="email"
           id="email"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
+          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300 placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30"
           placeholder="example@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -123,8 +110,7 @@ const SignUpForm = () => {
         <input
           type={showPassword ? "text" : "password"}
           id="password"
-          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300
-                     placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30 pr-10"
+          className="w-full bg-gray-800 bg-opacity-70 text-gray-200 border border-gray-600 rounded-lg px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all duration-300 placeholder-gray-500 hover:shadow-lg hover:shadow-neon/30 pr-10"
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -152,18 +138,14 @@ const SignUpForm = () => {
         />
         <p className="font-inter text-[12px] md:text-base whitespace-nowrap">
           I agree to the <strong className="text-neon">Privacy Policy</strong>{" "}
-          and
-          <strong className="text-neon"> Terms of Use</strong>
+          and <strong className="text-neon"> Terms of Use</strong>
         </p>
       </div>
 
       {/* Sign Up Button */}
       <Button2
         type="submit"
-        className="w-full bg-neon text-gray-900 rounded-xl font-bold text-lg
-                   hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
-                   focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-black
-                   shadow-lg hover:shadow-neon/60"
+        className="w-full bg-neon text-gray-900 rounded-xl font-bold text-lg hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-black shadow-lg hover:shadow-neon/60"
       >
         Create Account
       </Button2>

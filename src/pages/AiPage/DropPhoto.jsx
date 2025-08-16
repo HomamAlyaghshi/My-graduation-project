@@ -1,176 +1,113 @@
 import React, { useState, useRef } from "react";
-// Removed FaRocket import as it's no longer needed
-// import Button2 from "../../Components/Button2"; // Assuming Button2 is themed correctly
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false); // State for overall submission process
-  const [submitMessage, setSubmitMessage] = useState(""); // For messages like "Done!" or "Uploading..."
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [analysisData, setAnalysisData] = useState(null);
   const fileInputRef = useRef(null);
-
-  // === Drag and Drop Handlers ===
-  const handleDragOver = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files[0];
-    handleFile(file);
-  };
-
-  // === File Handling ===
-  const handleFile = (file) => {
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onloadend = () => { // Use onloadend for more reliable loading
-        setImageSrc(reader.result);
-        setSubmitMessage(""); // Clear any previous messages
-      };
-      reader.readAsDataURL(file);
-    } else if (file) {
-      alert("Please drop an image file (e.g., .jpg, .png, .gif)."); // Simple feedback for non-image files
-    }
-  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    handleFile(file);
+    if (file) {
+      setImageSrc(file);
+      setSubmitMessage("");
+      setAnalysisData(null);
+    }
   };
 
-  // === Submission Logic (without rocket animation) ===
-  const handleSubmit = () => {
-    if (isSubmitting || !imageSrc) return; // Prevent multiple clicks or submission without image
+  const handleSubmit = async () => {
+    if (isSubmitting) return;
+
+    if (!fileInputRef.current || !fileInputRef.current.files[0]) {
+      alert("Please select a .fits file first!");
+      return;
+    }
+
+    const file = fileInputRef.current.files[0];
+    if (!file.name.endsWith(".fits")) {
+      alert("Only .fits files are allowed!");
+      return;
+    }
 
     setIsSubmitting(true);
-    setSubmitMessage("Processing..."); // Indicate that something is happening
+    setSubmitMessage("Uploading...");
+    setAnalysisData(null);
 
-    // Simulate network request or processing
-    setTimeout(() => {
-      console.log("Image processed and submitted!");
-      setSubmitMessage("Done!"); // Final success message
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
 
-      // In a real application, you'd send `imageSrc` to your backend here
-      // fetch('/api/upload', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ image: imageSrc }),
-      //   headers: { 'Content-Type': 'application/json' },
-      // })
-      // .then(response => response.json())
-      // .then(data => {
-      //   setSubmitMessage("Success!");
-      //   console.log("Upload successful:", data);
-      // })
-      // .catch(error => {
-      //   setSubmitMessage("Failed!");
-      //   console.error("Upload error:", error);
-      // })
-      // .finally(() => {
-      //   setTimeout(() => {
-      //     setIsSubmitting(false);
-      //     setSubmitMessage("");
-      //     // Optional: Clear image after successful submission
-      //     // setImageSrc(null);
-      //   }, 1500); // Keep "Done!" message for a bit
-      // });
+      const response = await fetch("http://192.168.88.187:8000/api/files/upload", {
+        method: "POST",
+        body: formData,
+        headers:{
+          'Authorization':localStorage.getItem("token"),
+          'Accept':'application/json'
+        }
+      });
 
-      // After a short delay, reset submission state and clear message
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setSubmitMessage("");
-        // Optionally clear the image after successful submission
-        // setImageSrc(null);
-      }, 1500); // How long "Done!" message stays
-    }, 1000); // Shorter duration as there's no complex animation
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitMessage("Upload Successful!");
+        setAnalysisData(data.data); // ⬅️ هنا نعرض القيم الثلاثة
+      } else {
+        setSubmitMessage("Upload Failed: " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmitMessage("Error uploading file");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  // === Delete Image ===
   const handleDelete = () => {
     setImageSrc(null);
-    setSubmitMessage(""); // Clear any messages when deleting
+    setSubmitMessage("");
+    setAnalysisData(null);
     if (fileInputRef.current) {
-        fileInputRef.current.value = ""; // Clear the input so same file can be selected again
+      fileInputRef.current.value = "";
     }
   };
 
   return (
-    <div
-      data-aos="fade-right"
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-      className={`h-[500px] w-full border-2 border-dashed rounded-xl flex flex-col m-4 items-center justify-center transition-colors duration-200
-                  ${isDragging ? "bg-spaceMid border-neon" : "bg-spaceDark border-subText"} relative p-4`}
-    >
-      {imageSrc ? (
-        // === Image Displayed ===
-        <>
-          <img
-            src={imageSrc}
-            alt="Uploaded photo preview"
-            className="max-w-full h-[250px] object-contain mb-5 rounded-md shadow-lg shadow-neon/20"
-          />
-          <div className="flex flex-col sm:flex-row gap-4 relative">
-            {/* Submit Button (without rocket icon or animation) */}
-            <button
-              onClick={handleSubmit}
-              className={`flex items-center justify-center gap-2 px-6 py-3 bg-neon text-spaceDark rounded-xl font-bold text-lg
-                          hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
-                          focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-spaceDark
-                          shadow-lg hover:shadow-neon/60
-                          ${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Processing..." : "Submit"}
-            </button>
+    <div className="p-6 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4 text-center">Upload .FITS File</h1>
 
-            {/* Delete Button */}
-            <button
-              onClick={handleDelete}
-              className="px-6 py-3 bg-red-700 text-lightText rounded-xl font-bold text-lg
-                         hover:bg-red-800 hover:scale-[0.98] transition duration-300
-                         focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-spaceDark"
-              disabled={isSubmitting}
-            >
-              Delete
-            </button>
-          </div>
-          {/* Submission Status Message */}
-          {submitMessage && (
-            <p className="mt-4 text-star text-lg font-bold transition-opacity duration-300">
-              {submitMessage}
-            </p>
-          )}
-        </>
-      ) : (
-        // === No Image Displayed ===
-        <div className="text-center font-bold font-Rajdhani text-lightText">
-          <p className="text-xl sm:text-2xl">Drop your photo here</p>
-          <p className="my-3 text-subText">Or</p>
-          {/* Button for file input */}
-          <button
-            onClick={() => fileInputRef.current.click()}
-            className="px-6 py-3 bg-neon text-spaceDark rounded-xl font-bold text-lg
-                       hover:bg-opacity-80 hover:scale-[0.98] duration-300 transition-all
-                       focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-spaceDark
-                       shadow-lg hover:shadow-neon/60"
-          >
-            Upload Photo
-          </button>
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            className="hidden"
-            onChange={handleFileChange}
-          />
+      <input
+        type="file"
+        accept=".fits"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        className="mb-4"
+      />
+
+      <div className="flex gap-4 mb-4">
+        <button
+          onClick={handleSubmit}
+          className="px-4 py-2 bg-neon text-black rounded font-bold"
+          disabled={isSubmitting || !imageSrc}
+        >
+          {isSubmitting ? "Uploading..." : "Upload"}
+        </button>
+
+        <button
+          onClick={handleDelete}
+          className="px-4 py-2 bg-red-600 text-white rounded font-bold"
+        >
+          Delete
+        </button>
+      </div>
+
+      {submitMessage && <p className="mb-4 font-semibold">{submitMessage}</p>}
+
+      {analysisData && (
+        <div className="bg-gray-800 text-white p-4 rounded">
+          <p>Teff: {analysisData.Teff}</p>
+          <p>logg: {analysisData.logg}</p>
+          <p>FeH: {analysisData.FeH}</p>
         </div>
       )}
     </div>
