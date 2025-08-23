@@ -1,20 +1,18 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
 
 const teamMembers = [
   {
     name: "Homam Alyaghshi",
-    role: "Administrative",
+    role: "Computer Engineer",
     image: "https://randomuser.me/api/portraits/women/65.jpg",
-    bgImage: "/images/banner3.png",
-    desc: "Homam Alyaghshi is a dedicated administrative professional with a keen eye for detail and a passion for optimizing workflows. She ensures seamless operations and a supportive environment for the team.",
+    bgImage: "/images/homamback.png",
   },
   {
     name: "Omar Sanoubar",
-    role: "Marketing Specialist",
-    image: "https://randomuser.me/api/portraits/men/44.jpg",
-    bgImage: "/images/banner1.png",
-    desc: "Omar Sanoubar is a creative marketing specialist known for his innovative campaigns and ability to connect with audiences. He drives brand visibility and engagement through strategic initiatives.",
+    role: "Computer Engineer",
+    image: "/images/omar.jpg",
+    bgImage: "/images/omarback.jpg",
   },
 ];
 
@@ -28,36 +26,34 @@ const OurTeam = () => {
         {teamMembers.map((member, idx) => (
           <div
             key={idx}
-            className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 group"
+            className="relative rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 group"
+            style={{
+              backgroundImage: `url(${member.bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            <div
-              className="relative p-8 text-white flex flex-col items-center justify-center min-h-[200px] bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${member.bgImage})`,
-              }}
-            >
-              <div className="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-50 transition-all duration-300"></div>
-              <div className="relative z-10 text-center">
-                <h3 className="text-2xl font-Orbitron font-bold text-neon tracking-wide">
-                  {member.name}
-                </h3>
-                <p className="text-lg font-Rajdhani text-subText mt-2">
-                  {member.role}
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center -mt-16 z-50">
+            <div className="bg-black bg-opacity-60 w-full h-full p-6 flex flex-col items-center text-white">
+              {/* صورة شخصية */}
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-32 h-32 rounded-full border-4 border-neon shadow-lg object-cover group-hover:shadow-neon/50 group-hover:scale-110 transition-all duration-300 z-50"
-                onError={(e) => (e.target.src = "https://via.placeholder.com/150/4F46E5/FFFFFF?text=User")}
+                className="w-72 h-72 rounded-full border-4 border-neon shadow-lg object-cover group-hover:shadow-neon/50 group-hover:scale-110 transition-all duration-300"
+                onError={(e) =>
+                  (e.target.src =
+                    "https://via.placeholder.com/150/4F46E5/FFFFFF?text=User")
+                }
               />
-            </div>
-            <div className="p-6 text-white bg-gray-700/50 mx-4 mb-4 rounded-lg">
-              <p className="font-Rajdhani text-base text-lightText leading-relaxed text-center">
-                {member.desc}
+
+              {/* الاسم */}
+              <h3 className="text-2xl font-Orbitron font-bold text-neon tracking-wide mt-4">
+                {member.name}
+              </h3>
+              <p className="text-lg font-Rajdhani text-subText">
+                {member.role}
               </p>
+
+              {/* مواقع التواصل */}
               <div className="flex justify-center gap-6 mt-6 text-xl">
                 <a
                   href="https://facebook.com"
@@ -65,15 +61,15 @@ const OurTeam = () => {
                   rel="noopener noreferrer"
                   aria-label="Facebook"
                 >
-                  <FaFacebookF className="text-gray-400 hover:text-blue-500 transform hover:scale-125 transition-all duration-300" />
+                  <FaFacebookF className="text-gray-300 hover:text-blue-500 transform hover:scale-125 transition-all duration-300" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://t.me"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Twitter"
+                  aria-label="Telegram"
                 >
-                  <FaTwitter className="text-gray-400 hover:text-sky-400 transform hover:scale-125 transition-all duration-300" />
+                  <FaTelegramPlane className="text-gray-300 hover:text-sky-400 transform hover:scale-125 transition-all duration-300" />
                 </a>
                 <a
                   href="https://linkedin.com"
@@ -81,7 +77,7 @@ const OurTeam = () => {
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
                 >
-                  <FaLinkedinIn className="text-gray-400 hover:text-blue-600 transform hover:scale-125 transition-all duration-300" />
+                  <FaLinkedinIn className="text-gray-300 hover:text-blue-600 transform hover:scale-125 transition-all duration-300" />
                 </a>
               </div>
             </div>

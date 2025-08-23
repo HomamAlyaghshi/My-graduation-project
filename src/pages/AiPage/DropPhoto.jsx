@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { CloudArrowUpIcon } from "@heroicons/react/24/outline"; // أيقونة للرفع
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -41,17 +42,17 @@ const DropPhoto = () => {
       const response = await fetch("http://192.168.88.187:8000/api/files/upload", {
         method: "POST",
         body: formData,
-        headers:{
-          'Authorization':localStorage.getItem("token"),
-          'Accept':'application/json'
-        }
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          Accept: "application/json",
+        },
       });
 
       const data = await response.json();
 
       if (data.success) {
         setSubmitMessage("Upload Successful!");
-        setAnalysisData(data.data); // ⬅️ هنا نعرض القيم الثلاثة
+        setAnalysisData(data.data);
       } else {
         setSubmitMessage("Upload Failed: " + data.message);
       }
@@ -73,21 +74,34 @@ const DropPhoto = () => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center">Upload .FITS File</h1>
+    <div className="p-6 max-w-lg mx-auto">
+      <h1 className="text-2xl font-bold mb-6 text-center text-white">
+        Upload .FITS File
+      </h1>
 
-      <input
-        type="file"
-        accept=".fits"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        className="mb-4"
-      />
+      {/* Dropzone كبير */}
+      <label
+        htmlFor="file-upload"
+        className="flex flex-col items-center justify-center w-96 h-96 border-2 border-dashed border-gray-500 rounded-xl cursor-pointer bg-gray-900 hover:border-neon transition-colors"
+      >
+        <CloudArrowUpIcon className="w-16 h-16 text-gray-400 mb-2" />
+        <p className="text-gray-300 text-lg">Drag & Drop your .fits file here</p>
+        <p className="text-sm text-gray-500">or click to select</p>
+        <input
+          id="file-upload"
+          type="file"
+          accept=".fits"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          className="hidden"
+        />
+      </label>
 
-      <div className="flex gap-4 mb-4">
+      {/* أزرار */}
+      <div className="flex gap-4 mt-6">
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-neon text-black rounded font-bold"
+          className="flex-1 px-4 py-2 bg-neon text-black rounded font-bold"
           disabled={isSubmitting || !imageSrc}
         >
           {isSubmitting ? "Uploading..." : "Upload"}
@@ -95,19 +109,25 @@ const DropPhoto = () => {
 
         <button
           onClick={handleDelete}
-          className="px-4 py-2 bg-red-600 text-white rounded font-bold"
+          className="flex-1 px-4 py-2 bg-red-600 text-white rounded font-bold"
         >
           Delete
         </button>
       </div>
 
-      {submitMessage && <p className="mb-4 font-semibold">{submitMessage}</p>}
+      {/* رسالة الرفع */}
+      {submitMessage && (
+        <p className="mt-4 font-semibold text-center text-white">
+          {submitMessage}
+        </p>
+      )}
 
+      {/* بيانات التحليل */}
       {analysisData && (
-        <div className="bg-gray-800 text-white p-4 rounded">
-          <p>Teff: {analysisData.Teff}</p>
-          <p>logg: {analysisData.logg}</p>
-          <p>FeH: {analysisData.FeH}</p>
+        <div className="mt-4 bg-gray-800 text-white p-4 rounded">
+          <p>Effective temperature (Teff) : {analysisData.Teff}</p>
+          <p>Surface gravity (log(g)): {analysisData.logg}</p>
+          <p>Metallicity (Fe/H): {analysisData.FeH}</p>
         </div>
       )}
     </div>
