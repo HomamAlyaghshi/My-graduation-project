@@ -12,12 +12,12 @@ import {
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
-    username: "Homam Al-Yarshi",
+    username: "Homam Al yaghshi",
     bio: "This is a brief summary about the user and their interests.",
-    avatarUrl: null,
+    avatarUrl: "/images/homam.png",
     firstName: "Homam",
-    middleName: "Ali",
-    lastName: "Al-Yarshi",
+    middleName: "",
+    lastName: "Al yaghshi",
     email: "user@example.com",
     password: "********",
     phone: "+123 456 7890",
