@@ -10,7 +10,7 @@ import HeroSection from "./HeroSection";
 
 // Lazy imports
 const Slider = lazy(() => import("./Slider"));
-const Banner = lazy(() => import("./Banner"));
+const AI = lazy(() => import("./AI"));
 const BannerGrid = lazy(() => import("./BannerGrid"));
 const BlogSectaion = lazy(() => import("./BlogSectaion"));
 
@@ -46,7 +46,7 @@ const HomePage = () => {
       <HeroSection />
 
       <LazySection>
-        <Banner />
+        <AI />
       </LazySection>
 
       <Values />

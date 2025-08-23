@@ -91,7 +91,7 @@ const NavBar = () => {
       <Link to={"/homepage"}>
         <button className="font-Orbitron text-2xl sm:text-3xl font-bold text-center hover:text-subText transition-all duration-200 hover:scale-105 transform flex items-center gap-2">
           <FcGraduationCap className="inline-block w-8 h-8 sm:w-9 sm:h-9" />
-          SpaceX.
+          NeuroStar
         </button>
       </Link>
 

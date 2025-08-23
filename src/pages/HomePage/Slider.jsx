@@ -38,7 +38,6 @@ const Slider = () => {
     <div className="Slider w-full h-screen overflow-hidden relative">
       {/* Slider Wrapper */}
       <div
-        data-aos="fade-up"
         className="relative w-full h-full overflow-hidden"
       >
         {/* Slides */}

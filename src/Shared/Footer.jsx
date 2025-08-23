@@ -11,7 +11,6 @@ const Footer = () => {
   return (
     // Main container with deep gradient and responsive padding
     <div
-    data-aos="fade-down"
       className="relative bg-gradient-to-b from-[#3a5f91] via-[#0a1d3a] to-[#000000] text-white py-12 px-4 overflow-hidden
                     md:py-16 md:px-8 lg:px-16"
     >
@@ -30,8 +29,7 @@ const Footer = () => {
               className="font-Orbitron text-3xl lg:text-4xl font-extrabold text-white mb-3 tracking-wider
                                hover:text-blue-400 transition-colors duration-300 transform hover:scale-105"
             >
-              SpaceX.
-            </button>
+NeuroStar            </button>
           </Link>
           <p
             className="text-sm leading-relaxed text-gray-300 w-full px-6

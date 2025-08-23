@@ -12,7 +12,7 @@ const HeroSection = () => {
           data-aos="fade-left"
           className="flex-1 max-w-[453px] mt-4 md:mt-0 md:ml-6 font-inter text-[12px] md:text-[16px] font-normal leading-[20px] md:leading-[26px]"
         >
-          <strong className="text-star">Homam</strong> is a platform dedicated
+          <strong className="text-star">NeuroStar</strong> is a platform dedicated
           to space exploration, celestial phenomena, and inspiring curiosity
           about the universe.
         </div>

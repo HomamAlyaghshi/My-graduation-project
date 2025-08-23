@@ -1,13 +1,12 @@
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button";
 
-const Banner = () => {
+const AI = () => {
   return (
     <div className="md:h-[532px] w-full justify-center items-center flex flex-col md:flex-row  shadow-xl shadow-neon   ">
       <Link to="/ai" className="w-full h-full">
         <div
-          data-aos="fade-down"
+          data-aos="fade-up"
           className=" w-full h-full flex justify-center items-center border-2 rounded-2xl border-neon"
         >
           <video
@@ -45,4 +44,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default AI;
