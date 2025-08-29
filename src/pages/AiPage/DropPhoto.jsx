@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { CloudArrowUpIcon } from "@heroicons/react/24/outline"; // أيقونة للرفع
+import { CloudArrowUpIcon } from "@heroicons/react/24/outline"; 
 
 const DropPhoto = () => {
   const [imageSrc, setImageSrc] = useState(null);
@@ -79,7 +79,7 @@ const DropPhoto = () => {
         Upload .FITS File
       </h1>
 
-      {/* Dropzone كبير */}
+      {/* Dropzone*/}
       <label
         htmlFor="file-upload"
         className="flex flex-col items-center justify-center w-96 h-96 border-2 border-dashed border-gray-500 rounded-xl cursor-pointer bg-gray-900 hover:border-neon transition-colors"
